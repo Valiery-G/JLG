@@ -7,15 +7,32 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
     * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, Helvetica, sans-serif; }
-    body { background:#fff; color:#333; }
+    body { background:#2862C0; color:white; }
     a { text-decoration:none; }
 
     /* Hero Section */
-    .hero { background:url('bg.jpg') no-repeat center/cover; height:100vh; position:relative; display:flex; align-items:center; padding-left:50px; color:white; }
-    .hero::before { content:""; position:absolute; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.3); z-index:1; }
-    .hero::after { content:""; position:absolute; bottom:0; left:0; right:0; height:200px; background: linear-gradient(to top, white, transparent); z-index:2; }
-    .hero-content { position:relative; max-width:500px; z-index:3; }
-    .hero-content h1 { font-size:48px; font-weight:bold; margin-bottom:15px; line-height:1.2; }
+    .hero { 
+      background:url('bg.jpg') no-repeat center/cover; 
+      height:100vh; 
+      position:relative; 
+      display:flex; 
+      align-items:center; 
+      padding-left:50px; 
+      color:white; 
+    }
+    .hero::before { 
+      content:""; position:absolute; top:0; left:0; right:0; bottom:0; 
+      background:rgba(0,0,0,0.3); z-index:1; 
+    }
+    .hero::after { 
+      content:""; 
+      position:absolute; 
+      bottom:0; left:0; right:0; height:200px; 
+      background: linear-gradient(to bottom, transparent, #ffffff); 
+      z-index:2; 
+    }
+    .hero-content { position:relative; max-width:700px; z-index:3; }
+    .hero-content h1 { font-size:60px; font-weight:bold; margin-bottom:15px; line-height:1.2; white-space:nowrap; }
     .hero-content p { font-size:18px; line-height:1.6; margin-bottom:20px; }
     .buttons { display:flex; gap:15px; }
     .buttons a { padding:12px 30px; border-radius:25px; font-size:14px; font-weight:bold; transition:0.3s; display:inline-block; text-align:center; }
@@ -24,37 +41,95 @@
     .btn-hubungi { background:#1e90ff; color:white; }
     .btn-hubungi:hover { background:#0066cc; }
 
-    /* Section 2 */
-    .section { display:flex; align-items:center; justify-content:center; gap:40px; padding:80px 50px; }
-    .section img { width:320px; border-radius:10px; }
-    .section-text { max-width:500px; }
-    .section-text h2 { font-size:22px; margin-bottom:15px; }
-    .section-text p { font-size:16px; line-height:1.6; }
+    /* Section 2 dengan gradasi */
+    .section-gradient {
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:40px;
+      padding:100px 50px;
+      background: linear-gradient(to bottom, #ffffff, #dbe9ff, #2862C0);
+      color:#000;
+      opacity:0;               /* untuk fade-in */
+      transform: translateY(50px);
+      transition: all 1s ease; /* animasi smooth */
+    }
+    .section-gradient.visible {
+      opacity:1;
+      transform: translateY(0);
+    }
+    .section-gradient img {
+      width:320px;
+      border-radius:15px;
+      box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    }
+    .section-gradient .section-text { max-width:550px; }
+    .section-gradient .section-text h2 {
+      font-size:28px;
+      font-weight:bold;
+      margin-bottom:20px;
+      line-height:1.4;
+    }
+    .section-gradient .section-text p {
+      font-size:17px;
+      line-height:1.7;
+      color:#222;
+    }
 
     /* Section Clients */
-    .clients { padding:80px 50px; background:#f9f9f9; }
+    .clients {
+      padding:80px 50px;
+      background:#2862C0;
+      color:white;
+    }
     .clients .container { max-width:1100px; margin:auto; }
-    .clients h2 { text-align:center; font-size:30px; color:#003366; margin-bottom:50px; }
+    .clients h2 { text-align:center; font-size:30px; color:white; margin-bottom:50px; }
     .clients-slider { display:flex; gap:30px; overflow:hidden; padding-bottom:10px; }
-    .client-card { flex:0 0 auto; width:150px; background:white; border-radius:20px; padding:15px; display:flex; flex-direction:column; align-items:center; box-shadow:0 6px 15px rgba(0,0,0,0.1); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .client-card {
+      flex:0 0 auto;
+      width:150px;
+      background: rgba(255,255,255,0.9);
+      border-radius:20px;
+      padding:15px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      box-shadow:0 6px 15px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
     .client-card img { width:80px; height:80px; object-fit:contain; border-radius:15px; margin-bottom:10px; }
-    .client-card p { font-size:14px; color:#333; text-align:center; font-weight:bold; }
+    .client-card p { font-size:14px; color:#003366; text-align:center; font-weight:bold; }
     .client-card:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.15); }
 
     /* Section Dokumentasi */
-    .dokumentasi { padding:80px 50px; background:#f0f7ff; }
+    .dokumentasi {
+      padding:80px 50px;
+      background:#2862C0;
+      color:white;
+    }
     .dokumentasi .container { max-width:1100px; margin:auto; text-align:center; }
-    .dokumentasi h2 { font-size:30px; color:#003366; margin-bottom:50px; }
+    .dokumentasi h2 { font-size:30px; color:white; margin-bottom:50px; }
     .coverflow-slider { position:relative; width:100%; height:250px; perspective:1000px; overflow:hidden; }
-    .coverflow-card { position:absolute; top:0; left:50%; width:200px; height:250px; margin-left:-100px; background:white; border-radius:20px; box-shadow:0 6px 15px rgba(0,0,0,0.1); transition: transform 0.5s ease, z-index 0.5s ease, opacity 0.5s ease; }
+    .coverflow-card {
+      position:absolute;
+      top:0;
+      left:50%;
+      width:200px;
+      height:250px;
+      margin-left:-100px;
+      background: rgba(255,255,255,0.9);
+      border-radius:20px;
+      box-shadow:0 6px 15px rgba(0,0,0,0.1);
+      transition: transform 0.5s ease, z-index 0.5s ease, opacity 0.5s ease;
+    }
     .coverflow-card img { width:100%; height:100%; object-fit:cover; border-radius:20px; }
 
     @media(max-width:768px){
-      .section { flex-direction:column; text-align:center; }
+      .section-gradient { flex-direction:column; text-align:center; }
       .hero { padding-left:20px; text-align:center; justify-content:center; }
       .hero-content { max-width:90%; }
       .buttons { flex-direction:column; gap:10px; }
-      .section img { width:90%; }
+      .section-gradient img { width:90%; }
       .clients-slider { gap:20px; }
       .client-card { width:120px; padding:10px; }
       .client-card img { width:60px; height:60px; }
@@ -67,7 +142,7 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <h1>PT <br> JURAGAN LANGIT GROUP</h1>
+      <h1>PT JURAGAN LANGIT GROUP</h1>
       <p>Penyedia layanan internet yang andal, cepat, dan menjangkau hingga daerah terpencil solusi konektivitas yang inklusif, inovatif, dan berkelanjutan</p>
       <div class="buttons">
         <a href="#" class="btn-info">Info Lanjut</a>
@@ -77,11 +152,13 @@
   </section>
 
   <!-- Section 2 -->
-  <section class="section">
+  <section class="section-gradient" id="section2">
     <img src="1.jpg" alt="Digital Globe">
     <div class="section-text">
-      <h2>Solusi nyata untuk mengatasi kesenjangan digital</h2>
-      <p>Dengan fondasi teknologi internet (IP base) dan jaringan yang luas, kami menyediakan akses internet yang terjangkau dan berkualitas, memberdayakan masyarakat dan mendorong kemajuan di seluruh pelosok.</p>
+      <h2>Solusi nyata untuk mengatasi<br> kesenjangan digital</h2>
+      <p>
+        Dengan fondasi teknologi internet (IP base) dan jaringan yang luas, kami menyediakan akses internet yang terjangkau dan berkualitas, memberdayakan masyarakat dan mendorong kemajuan di seluruh pelosok.
+      </p>
     </div>
   </section>
 
@@ -113,26 +190,23 @@
         <div class="coverflow-card"><img src="client4.png" alt="Dokumentasi 4"></div>
         <div class="coverflow-card"><img src="client5.png" alt="Dokumentasi 5"></div>
         <div class="coverflow-card"><img src="client6.png" alt="Dokumentasi 6"></div>
-        <div class="coverflow-card"><img src="client7.png" alt="Dokumentasi 7"></div>
-        <div class="coverflow-card"><img src="client8.png" alt="Dokumentasi 8"></div>
       </div>
     </div>
   </section>
 
   <script>
-  // Clients auto-scroll loop mulus
+  // Clients auto-scroll
   const sliderClients = document.getElementById('clientsSlider');
   const items = Array.from(sliderClients.children);
   for (let i=0;i<2;i++){ items.forEach(item=>sliderClients.appendChild(item.cloneNode(true))); }
 
   let scrollPos = 0;
   const speed = 1;
-
   function autoScrollClients() {
     scrollPos += speed;
     const maxScroll = sliderClients.scrollWidth / 3;
     if(scrollPos >= maxScroll) scrollPos = 0;
-    sliderClients.scrollLeft = scrollPos; // **langsung assign, smooth otomatis**
+    sliderClients.scrollLeft = scrollPos;
     requestAnimationFrame(autoScrollClients);
   }
   requestAnimationFrame(autoScrollClients);
@@ -163,6 +237,15 @@
   }
   setInterval(()=>{ currentIndex=(currentIndex+1)%cards.length; updateCoverflow(); },3000);
   updateCoverflow();
+
+  // Fade-in Section 2 on scroll
+  const section2 = document.getElementById("section2");
+  window.addEventListener("scroll", () => {
+    const rect = section2.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 100){
+      section2.classList.add("visible");
+    }
+  });
   </script>
 
 </body>
