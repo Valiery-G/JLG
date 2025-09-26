@@ -52,7 +52,7 @@
       color:#000;
       opacity:0;               /* untuk fade-in */
       transform: translateY(50px);
-      transition: all 1s ease; /* animasi smooth */
+      /* transition: all 1s ease; animasi smooth */
     }
     .section-gradient.visible {
       opacity:1;
@@ -124,6 +124,94 @@
     }
     .coverflow-card img { width:100%; height:100%; object-fit:cover; border-radius:20px; }
 
+    /* Section Visi & Misi */
+.visi-misi {
+  background: #2862C0;
+  padding: 80px 50px;
+}
+
+.visi-misi .container {
+  max-width: 1100px;
+  margin: auto;
+  text-align: center;
+}
+
+.visi-misi h2 {
+  font-size: 30px;
+  margin-bottom: 50px;
+  color: #003366;
+  position: relative;
+}
+
+.visi-misi-content {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.visi-card, .misi-card {
+  flex: 1;
+  background: white;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  min-width: 320px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.visi-card:hover, .misi-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.icon {
+  font-size: 45px;
+  margin-bottom: 20px;
+  background: #1e90ff;
+  color: white;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.visi-card h3, .misi-card h3 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #1e90ff;
+}
+
+.visi-card p {
+  font-size: 15px;
+  line-height: 1.7;
+  color: #444;
+}
+
+.misi-card ul {
+  list-style: none;
+  padding-left: 0;
+  text-align: left;
+}
+
+.misi-card ul li {
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 15px;
+  position: relative;
+  padding-left: 30px;
+  color: #444;
+}
+
+.misi-card ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: #1e90ff;
+  font-weight: bold;
+}
+
     @media(max-width:768px){
       .section-gradient { flex-direction:column; text-align:center; }
       .hero { padding-left:20px; text-align:center; justify-content:center; }
@@ -161,6 +249,39 @@
       </p>
     </div>
   </section>
+
+  <!-- Section Visi & Misi -->
+<section class="visi-misi">
+  <div class="container">
+    <h2>Visi & Misi</h2>
+    <div class="visi-misi-content">
+      
+      <!-- Visi -->
+      <div class="visi-card">
+        <div class="icon">🎯</div>
+        <h3>Visi</h3>
+        <p>
+          Menjadi penyedia layanan internet terdepan yang inklusif, inovatif, dan berkelanjutan, 
+          serta berkontribusi nyata dalam meningkatkan kualitas hidup masyarakat melalui 
+          akses informasi dan teknologi.
+        </p>
+      </div>
+
+      <!-- Misi -->
+      <div class="misi-card">
+        <div class="icon">✅</div>
+        <h3>Misi</h3>
+        <ul>
+          <li>Membangun dan mengelola infrastruktur WiFi yang tangguh dan adaptif, menggunakan kombinasi teknologi fiber optik dan nirkabel untuk menjangkau daerah-daerah terpencil dengan kondisi geografis yang beragam.</li>
+          <li>Menyediakan akses internet cepat, stabil, dan terjangkau bagi masyarakat.</li>
+          <li>Memberikan layanan pelanggan yang responsif, ramah, dan profesional untuk memastikan kepuasan pelanggan.</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
   <!-- Section Clients -->
   <section class="clients">
