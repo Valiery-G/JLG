@@ -1,645 +1,842 @@
 <!DOCTYPE html>
 <html lang="id">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PT Juragan Langit Group</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, Helvetica, sans-serif; }
-    body { background:#2862C0; color:white; }
-    a { text-decoration:none; }
-
-    html, body {
-  overflow-x: hidden;
-  width: 100%;
-}
-
-/* Navbar */
-.navbar {
-  background: #0A1440;
-  padding: 15px 30px;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
-}
-
-.container-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  color: white;
-  font-weight: bold;
-  font-size: 14px;
-}
-
-.logo img {
-  height: 55px;   /* sebelumnya 40px */
-  margin-right: 12px;
-}
-.logo span {
-  font-size: 16px;  /* biar teksnya seimbang */
-}
-
-
-.nav-links {
-  display: flex;
-  gap: 30px;
-}
-
-.nav-links a {
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #2862C0;
-}
-
-/* Hamburger modern */
-.hamburger {
-  display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 25px;
-  height: 20px;
-  cursor: pointer;
-}
-
-.hamburger span {
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: white;
-  border-radius: 5px;
-  transition: all 0.4s ease;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .nav-links {
-    position: absolute;
-    top: 65px;
-    right: 0;
-    background: #0A1440;
-    flex-direction: column;
-    width: 200px;
-    display: none;
-    padding: 20px;
-  }
-
-  .nav-links a {
-    padding: 10px 0;
-    font-size: 16px;
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-}
-
-/* Animasi Hamburger → X */
-.hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
-}
-
-    /* Hero Section */
-    .hero { 
-      background:url('bg.jpg') no-repeat center/cover; 
-      height:100vh; 
-      position:relative; 
-      display:flex; 
-      align-items:center; 
-      padding-left:50px; 
-      color:white; 
-    }
-    .hero::before { 
-      content:""; position:absolute; top:0; left:0; right:0; bottom:0; 
-      background:rgba(0,0,0,0.3); z-index:1; 
-    }
-    .hero::after { 
-      content:""; 
-      position:absolute; 
-      bottom:0; left:0; right:0; height:200px; 
-      background: linear-gradient(to bottom, transparent, #ffffff); 
-      z-index:2; 
-    }
-    .hero-content { 
-      position:relative; max-width:700px; z-index:3; 
-    }
-    .hero-content h1 {
-  font-size: 60px;
-  font-weight: bold;
-  margin-bottom: 15px;
-  line-height: 1.2;
-  white-space: normal; /* biar bisa wrap */
-  word-break: break-word; /* jaga-jaga kalau ada kata panjang */
-}
-    .hero-content p { font-size:18px; line-height:1.6; margin-bottom:20px; }
-    .buttons { display:flex; gap:15px; }
-    .buttons a { padding:12px 30px; border-radius:25px; font-size:14px; font-weight:bold; transition:0.3s; display:inline-block; text-align:center; }
-    .btn-info { background:#d7e8ff; color:#003366; }
-    .btn-info:hover { background:#b3d1ff; }
-    .btn-hubungi { background:#1e90ff; color:white; }
-    .btn-hubungi:hover { background:#0066cc; }
-
-    /* Section 2 dengan gradasi */
-    .section-gradient {
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:40px;
-      padding:100px 50px;
-      background: linear-gradient(to bottom, #ffffff, #dbe9ff, #2862C0);
-      color:#000;
-      opacity:0;               
-      transform: translateY(50px);
-    }
-    .section-gradient.visible {
-      opacity:1;
-      transform: translateY(0);
-    }
-    .section-gradient img {
-      width:320px;
-      border-radius:15px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.2);
-    }
-    .section-gradient .section-text { max-width:550px; }
-    .section-gradient .section-text h2 {
-      font-size:28px;
-      font-weight:bold;
-      margin-bottom:20px;
-      line-height:1.4;
-    }
-    .section-gradient .section-text p {
-      font-size:17px;
-      line-height:1.7;
-      color:#222;
-    }
-
-    /* Section Visi & Misi */
-    .visi-misi {
-      background: #2862C0;
-      padding: 80px 50px;
-    }
-    .visi-misi .container {
-      max-width: 1100px;
-      margin: auto;
-      text-align: center;
-    }
-    .visi-misi h2 {
-      font-size: 30px;
-      margin-bottom: 50px;
-      color: #ffffff;
-      position: relative;
-    }
-    .visi-misi-content {
-      display: flex;
-      gap: 30px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .visi-card, .misi-card {
-      flex: 1;
-      background: white;
-      padding: 40px 30px;
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      min-width: 320px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .visi-card:hover, .misi-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
-    }
-    .icon {
-      font-size: 45px;
-      margin-bottom: 20px;
-      background: #1e90ff;
-      color: white;
-      width: 80px;
-      height: 80px;
-      line-height: 80px;
-      border-radius: 50%;
-      display: inline-block;
-    }
-    .visi-card h3, .misi-card h3 {
-      font-size: 22px;
-      margin-bottom: 20px;
-      color: #1e90ff;
-    }
-    .visi-card p {
-      font-size: 15px;
-      line-height: 1.7;
-      color: #444;
-    }
-    .misi-card ul {
-      list-style: none;
-      padding-left: 0;
-      text-align: left;
-    }
-    .misi-card ul li {
-      font-size: 15px;
-      line-height: 1.8;
-      margin-bottom: 15px;
-      position: relative;
-      padding-left: 30px;
-      color: #444;
-    }
-    .misi-card ul li::before {
-      content: "✔";
-      position: absolute;
-      left: 0;
-      color: #1e90ff;
-      font-weight: bold;
-    }
-
-    /* Section Produk & Layanan */
-    .produk-layanan {
-      background:#2862C0;
-      padding:80px 50px;
-      text-align:center;
-    }
-    .produk-layanan h2 {
-      font-size:30px;
-      margin-bottom:50px;
-      color:#ffffff;
-    }
-    .produk-grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
-      gap:30px;
-      max-width:1100px;
-      margin:auto;
-    }
-    .produk-card {
-      background:white;
-      border-radius:20px;
-      padding:30px 20px;
-      box-shadow:0 6px 15px rgba(0,0,0,0.1);
-      transition:transform 0.3s ease, box-shadow 0.3s ease;
-      opacity: 0;
-      transform: translateY(40px);
-    }
-    .produk-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .produk-card:hover {
-      transform:translateY(-8px);
-      box-shadow:0 12px 25px rgba(0,0,0,0.15);
-    }
-    .produk-card img {
-  width: 120px;        /* lebih besar */
-  height: 120px;       /* biar konsisten */
-  object-fit: contain; /* supaya tidak gepeng */
-  margin-bottom: 10px; /* lebih dekat dengan tulisan */
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-    .produk-card h3 {
-      margin-bottom:10px;
-      font-size:18px;
-      color:#2862C0;
-    }
-    .produk-card p {
-      font-size:14px;
-      color:#444;
-    }
-
-    /* Section Clients */
-    .clients {
-      padding:80px 50px;
-      background:#2862C0;
-      color:white;
-    }
-    .clients .container { max-width:1100px; margin:auto; }
-    .clients h2 { text-align:center; font-size:30px; color:white; margin-bottom:50px; }
-    .clients-slider { display:flex; gap:30px; overflow:hidden; padding-bottom:10px; }
-    .client-card {
-      flex:0 0 auto;
-      width:150px;
-      background: rgba(255,255,255,0.9);
-      border-radius:20px;
-      padding:15px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      box-shadow:0 6px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .client-card img { width:80px; height:80px; object-fit:contain; border-radius:15px; margin-bottom:10px; }
-    .client-card p { font-size:14px; color:#003366; text-align:center; font-weight:bold; }
-    .client-card:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.15); }
-
-    /* Section Dokumentasi */
-    .dokumentasi {
-      padding:80px 50px;
-      background:#2862C0;
-      color:white;
-    }
-    .dokumentasi .container { max-width:1100px; margin:auto; text-align:center; }
-    .dokumentasi h2 { font-size:30px; color:white; margin-bottom:50px; }
-    .coverflow-slider { position:relative; width:100%; height:250px; perspective:1000px; overflow:hidden; }
-    .coverflow-card {
-      position:absolute;
-      top:0;
-      left:50%;
-      width:200px;
-      height:250px;
-      margin-left:-100px;
-      background: rgba(255,255,255,0.9);
-      border-radius:20px;
-      box-shadow:0 6px 15px rgba(0,0,0,0.1);
-      transition: transform 0.5s ease, z-index 0.5s ease, opacity 0.5s ease;
-    }
-    .coverflow-card img { width:100%; height:100%; object-fit:cover; border-radius:20px; }
-
-    @media(max-width:768px){
-      .section-gradient { flex-direction:column; text-align:center; }
-      .hero { padding-left:20px; text-align:center; justify-content:center; }
-      .hero-content { max-width:90%; }
-      .buttons { flex-direction:column; gap:10px; }
-      .section-gradient img { width:90%; }
-      .clients-slider { gap:20px; }
-      .client-card { width:120px; padding:10px; }
-      .client-card img { width:60px; height:60px; }
-      .coverflow-card { width:150px; height:180px; margin-left:-75px; }
-    }
-
-    .hero h1 {
-  font-size: 60px;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: white;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.4);
-  word-wrap: break-word; /* biar otomatis pecah kalau kepanjangan */
-}
-
-@media (max-width: 768px) {
-  .hero h1 {
-    font-size: 36px;   /* lebih kecil di tablet */
-  }
-  
-}
-
-@media(max-width:768px){
-  .hero-content h1 {
-    font-size: 36px;   /* lebih kecil di HP */
-    text-align: center;
-  }
-  .hero-content p {
-    font-size: 16px;
-  }
-}
-
-
-@media (max-width: 480px) {
-  .hero h1 {
-    font-size: 28px;   /* pas HP lebih kecil lagi */
-    line-height: 1.3;  /* biar rapi */
-    text-align: center;/* pastikan rata tengah */
-  }
-}
-
-  </style>
-</head>
-<body>
-
-<!-- Navbar -->
-<header class="navbar">
-  <div class="container-nav">
-    <div class="logo">
-      <img src="logo.png" alt="Logo"> <!-- ganti dengan logo kamu -->
-      <span>PT. JURAGAN LANGIT GROUP</span>
-    </div>
-
-    <nav class="nav-links" id="navLinks">
-      <a href="#beranda">Beranda</a>
-      <a href="#produk">Produk dan Layanan</a>
-      <a href="#client">Client</a>
-      <a href="#dokumentasi">Dokumentasi</a>
-      <a href="#legalitas">Legalitas</a>
-    </nav>
-
-    <!-- Hamburger -->
-    <div class="hamburger" id="hamburger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-  </div>
-</header>
-
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <div class="hero-content">
-      <h1>PT. <br> JURAGAN LANGIT GROUP</h1>
-      <p>Penyedia layanan internet yang andal, cepat, dan menjangkau hingga daerah terpencil solusi konektivitas yang inklusif, inovatif, dan berkelanjutan</p>
-      <div class="buttons">
-        <a href="#" class="btn-info">Info Lanjut</a>
-        <a href="#" class="btn-hubungi">Hubungi</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section 2 -->
-  <section class="section-gradient" id="section2">
-    <img src="1.jpg" alt="Digital Globe">
-    <div class="section-text">
-      <h1><center>Solusi nyata untuk mengatasi<br> kesenjangan digital</center></h1>
-      <p><br>
-        Dengan fondasi teknologi internet (IP base) dan jaringan yang luas, kami menyediakan akses internet yang terjangkau dan berkualitas, memberdayakan masyarakat dan mendorong kemajuan di seluruh pelosok.
-      </p>
-    </div>
-  </section>
-
-  <!-- Section Visi & Misi -->
-  <section class="visi-misi">
-    <div class="container">
-      <h2>Visi & Misi</h2>
-      <div class="visi-misi-content">
-        <div class="visi-card">
-          <div class="icon">🎯</div>
-          <h3>Visi</h3>
-          <p>
-            Menjadi penyedia layanan internet terdepan yang inklusif, inovatif, dan berkelanjutan, 
-            serta berkontribusi nyata dalam meningkatkan kualitas hidup masyarakat melalui 
-            akses informasi dan teknologi.
-          </p>
-        </div>
-        <div class="misi-card">
-          <div class="icon">✅</div>
-          <h3>Misi</h3>
-          <ul>
-            <li>Membangun dan mengelola infrastruktur WiFi yang tangguh dan adaptif, menggunakan kombinasi teknologi fiber optik dan nirkabel untuk menjangkau daerah-daerah terpencil dengan kondisi geografis yang beragam.</li>
-            <li>Menyediakan akses internet cepat, stabil, dan terjangkau bagi masyarakat.</li>
-            <li>Memberikan layanan pelanggan yang responsif, ramah, dan profesional untuk memastikan kepuasan pelanggan.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section Produk & Layanan -->
-  <section class="produk-layanan" id="produk">
-    <div class="container">
-      <h2>Produk & Layanan</h2>
-      <div class="produk-grid">
-        <div class="produk-card">
-          <img src="s1.png" alt="Fiber Optic">
-          <h3>Dedicated Access Internet Fiber Optic</h3>
-          <!-- <p>Internet Fiber Optic</p> -->
-        </div>
-        <div class="produk-card">
-          <img src="s2.png" alt="Hotspot">
-          <h3>Internet Hotspot</h3>
-          <!-- <p>Koneksi praktis dengan jaringan hotspot</p> -->
-        </div>
-        <div class="produk-card">
-          <img src="s3.png" alt="Residential">
-          <h3>Residential Internet Access</h3>
-          <!-- <p>Akses internet cepat untuk rumah</p> -->
-        </div>
-        <div class="produk-card">
-          <img src="s4.png" alt="Wireless">
-          <h3>Dedicated Access Internet Wireless</h3>
-          <!-- <p>Internet Wireless</p> -->
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section Clients -->
-  <section class="clients">
-    <div class="container">
-      <h2>Client Kami</h2>
-      <div class="clients-slider" id="clientsSlider">
-        <div class="client-card"><img src="c1.png" alt="Client 1"><p>PT. kangen network solusindo</p></div>
-        <div class="client-card"><img src="client2.png" alt="Client 2"><p>Client 2</p></div>
-        <div class="client-card"><img src="client3.png" alt="Client 3"><p>Client 3</p></div>
-        <div class="client-card"><img src="client4.png" alt="Client 4"><p>Client 4</p></div>
-        <div class="client-card"><img src="client5.png" alt="Client 5"><p>Client 5</p></div>
-        <div class="client-card"><img src="client6.png" alt="Client 6"><p>Client 6</p></div>
-        <div class="client-card"><img src="client7.png" alt="Client 7"><p>Client 7</p></div>
-        <div class="client-card"><img src="client8.png" alt="Client 8"><p>Client 8</p></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Section Dokumentasi -->
-  <section class="dokumentasi">
-    <div class="container">
-      <h2>Dokumentasi</h2>
-      <div class="coverflow-slider" id="coverflowSlider">
-        <div class="coverflow-card"><img src="d1.jpg" alt="Dokumentasi 1"></div>
-        <div class="coverflow-card"><img src="d2.jpg" alt="Dokumentasi 2"></div>
-        <div class="coverflow-card"><img src="d3.jpg" alt="Dokumentasi 3"></div>
-        <div class="coverflow-card"><img src="d4.jpg" alt="Dokumentasi 4"></div>
-        <div class="coverflow-card"><img src="d5.jpg" alt="Dokumentasi 5"></div>
-        <div class="coverflow-card"><img src="d6.jpg" alt="Dokumentasi 6"></div>
-        <div class="coverflow-card"><img src="d7.jpg" alt="Dokumentasi 5"></div>
-        <div class="coverflow-card"><img src="d8.jpg" alt="Dokumentasi 6"></div>
-      </div>
-    </div>
-  </section>
-
-  <script>
-const hamburger = document.getElementById("hamburger");
-const navLinks = document.getElementById("navLinks");
-
-hamburger.addEventListener("click", () => {
-  hamburger.classList.toggle("active");
-  navLinks.classList.toggle("active");
-});
-    
-  // Clients auto-scroll
-  const sliderClients = document.getElementById('clientsSlider');
-  const items = Array.from(sliderClients.children);
-  for (let i=0;i<2;i++){ items.forEach(item=>sliderClients.appendChild(item.cloneNode(true))); }
-
-  let scrollPos = 0;
-  const speed = 1;
-  function autoScrollClients() {
-    scrollPos += speed;
-    const maxScroll = sliderClients.scrollWidth / 3;
-    if(scrollPos >= maxScroll) scrollPos = 0;
-    sliderClients.scrollLeft = scrollPos;
-    requestAnimationFrame(autoScrollClients);
-  }
-  requestAnimationFrame(autoScrollClients);
-
-  // Coverflow slider
-  const coverflowSlider = document.getElementById('coverflowSlider');
-  const cards = Array.from(coverflowSlider.querySelectorAll('.coverflow-card'));
-  let currentIndex = 0;
-  function updateCoverflow() {
-    const gap = 120;
-    const scaleStep = 0.1;
-    cards.forEach((card,index)=>{
-      card.style.transition='transform 0.5s ease,z-index 0.5s ease,opacity 0.5s ease';
-      const diff = index - currentIndex;
-      if(diff===0){
-        card.style.transform=`translateX(0) scale(1)`;
-        card.style.zIndex=5;
-        card.style.opacity=1;
-      }else{
-        const offset = diff*gap;
-        const scale = 1-Math.abs(diff)*scaleStep;
-        card.style.transform=`translateX(${offset}px) scale(${scale})`;
-        card.style.zIndex=5-Math.abs(diff);
-        card.style.opacity=Math.abs(diff)>3?0:0.7;
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PT Juragan Langit Group</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
       }
-    });
-  }
-  updateCoverflow();
-  setInterval(()=>{ currentIndex=(currentIndex+1)%cards.length; updateCoverflow(); },2000);
-
-  // Fade-in Section 2
-  const section2 = document.getElementById("section2");
-  window.addEventListener("scroll", () => {
-    const rect = section2.getBoundingClientRect();
-    if(rect.top < window.innerHeight - 100){
-      section2.classList.add("visible");
-    }
-  });
-
-  // Fade-in Produk & Layanan
-  const produkCards = document.querySelectorAll(".produk-card");
-  window.addEventListener("scroll", () => {
-    produkCards.forEach((card, i) => {
-      const rect = card.getBoundingClientRect();
-      if (rect.top < window.innerHeight - 100) {
-        setTimeout(() => {
-          card.classList.add("visible");
-        }, i * 200); // stagger effect
+      body {
+        background: #2862c0;
+        color: white;
       }
-    });
-  });
-  </script>
-</body>
+      a {
+        text-decoration: none;
+      }
+
+      html,
+      body {
+        overflow-x: hidden;
+        width: 100%;
+      }
+
+      /* Navbar */
+      .navbar {
+        background: #0a1440;
+        padding: 15px 30px;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .container-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        color: white;
+        font-weight: bold;
+        font-size: 14px;
+      }
+
+      .logo img {
+        height: 55px; /* sebelumnya 40px */
+        margin-right: 12px;
+      }
+      .logo span {
+        font-size: 16px; /* biar teksnya seimbang */
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+      }
+
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 14px;
+        transition: color 0.3s ease;
+      }
+
+      .nav-links a:hover {
+        color: #2862c0;
+      }
+
+      /* Hamburger modern */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 25px;
+        height: 20px;
+        cursor: pointer;
+      }
+
+      .hamburger span {
+        display: block;
+        height: 3px;
+        width: 100%;
+        background: white;
+        border-radius: 5px;
+        transition: all 0.4s ease;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .nav-links {
+          position: absolute;
+          top: 65px;
+          right: 0;
+          background: #0a1440;
+          flex-direction: column;
+          width: 200px;
+          display: none;
+          padding: 20px;
+        }
+
+        .nav-links a {
+          padding: 10px 0;
+          font-size: 16px;
+        }
+
+        .hamburger {
+          display: flex;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+      }
+
+      /* Animasi Hamburger → X */
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(6px, -6px);
+      }
+
+      /* Hero Section */
+      .hero {
+        background: url("bg.jpg") no-repeat center/cover;
+        height: 100vh;
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding-left: 50px;
+        color: white;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 1;
+      }
+      .hero::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 200px;
+        background: linear-gradient(to bottom, transparent, #ffffff);
+        z-index: 2;
+      }
+      .hero-content {
+        position: relative;
+        max-width: 700px;
+        z-index: 3;
+      }
+      .hero-content h1 {
+        font-size: 60px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        line-height: 1.2;
+        white-space: normal; /* biar bisa wrap */
+        word-break: break-word; /* jaga-jaga kalau ada kata panjang */
+      }
+      .hero-content p {
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+      .buttons {
+        display: flex;
+        gap: 15px;
+      }
+      .buttons a {
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-size: 14px;
+        font-weight: bold;
+        transition: 0.3s;
+        display: inline-block;
+        text-align: center;
+      }
+      .btn-info {
+        background: #d7e8ff;
+        color: #003366;
+      }
+      .btn-info:hover {
+        background: #b3d1ff;
+      }
+      .btn-hubungi {
+        background: #1e90ff;
+        color: white;
+      }
+      .btn-hubungi:hover {
+        background: #0066cc;
+      }
+
+      /* Section 2 dengan gradasi */
+      .section-gradient {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        padding: 100px 50px;
+        background: linear-gradient(to bottom, #ffffff, #dbe9ff, #2862c0);
+        color: #000;
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      .section-gradient.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .section-gradient img {
+        width: 320px;
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+      }
+      .section-gradient .section-text {
+        max-width: 550px;
+      }
+      .section-gradient .section-text h2 {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        line-height: 1.4;
+      }
+      .section-gradient .section-text p {
+        font-size: 17px;
+        line-height: 1.7;
+        color: #222;
+      }
+
+      /* Section Visi & Misi */
+      .visi-misi {
+        background: #2862c0;
+        padding: 80px 50px;
+      }
+      .visi-misi .container {
+        max-width: 1100px;
+        margin: auto;
+        text-align: center;
+      }
+      .visi-misi h2 {
+        font-size: 30px;
+        margin-bottom: 50px;
+        color: #ffffff;
+        position: relative;
+      }
+      .visi-misi-content {
+        display: flex;
+        gap: 30px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .visi-card,
+      .misi-card {
+        flex: 1;
+        background: white;
+        padding: 40px 30px;
+        border-radius: 20px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        min-width: 320px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .visi-card:hover,
+      .misi-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+      }
+      .icon {
+        font-size: 45px;
+        margin-bottom: 20px;
+        background: #1e90ff;
+        color: white;
+        width: 80px;
+        height: 80px;
+        line-height: 80px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+      .visi-card h3,
+      .misi-card h3 {
+        font-size: 22px;
+        margin-bottom: 20px;
+        color: #1e90ff;
+      }
+      .visi-card p {
+        font-size: 15px;
+        line-height: 1.7;
+        color: #444;
+      }
+      .misi-card ul {
+        list-style: none;
+        padding-left: 0;
+        text-align: left;
+      }
+      .misi-card ul li {
+        font-size: 15px;
+        line-height: 1.8;
+        margin-bottom: 15px;
+        position: relative;
+        padding-left: 30px;
+        color: #444;
+      }
+      .misi-card ul li::before {
+        content: "✔";
+        position: absolute;
+        left: 0;
+        color: #1e90ff;
+        font-weight: bold;
+      }
+
+      /* Section Produk & Layanan */
+      .produk-layanan {
+        background: #2862c0;
+        padding: 80px 50px;
+        text-align: center;
+      }
+      .produk-layanan h2 {
+        font-size: 30px;
+        margin-bottom: 50px;
+        color: #ffffff;
+      }
+      .produk-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 30px;
+        max-width: 1100px;
+        margin: auto;
+      }
+      .produk-card {
+        background: white;
+        border-radius: 20px;
+        padding: 30px 20px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      .produk-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .produk-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+      }
+      .produk-card img {
+        width: 120px; /* lebih besar */
+        height: 120px; /* biar konsisten */
+        object-fit: contain; /* supaya tidak gepeng */
+        margin-bottom: 10px; /* lebih dekat dengan tulisan */
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .produk-card h3 {
+        margin-bottom: 10px;
+        font-size: 18px;
+        color: #2862c0;
+      }
+      .produk-card p {
+        font-size: 14px;
+        color: #444;
+      }
+
+      /* Section Clients */
+      .clients {
+        padding: 80px 50px;
+        background: #2862c0;
+        color: white;
+      }
+      .clients .container {
+        max-width: 1100px;
+        margin: auto;
+      }
+      .clients h2 {
+        text-align: center;
+        font-size: 30px;
+        color: white;
+        margin-bottom: 50px;
+      }
+      .clients-slider {
+        display: flex;
+        gap: 30px;
+        overflow: hidden;
+        padding-bottom: 10px;
+      }
+      .client-card {
+        flex: 0 0 auto;
+        width: 150px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 20px;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .client-card img {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        border-radius: 15px;
+        margin-bottom: 10px;
+      }
+      .client-card p {
+        font-size: 14px;
+        color: #003366;
+        text-align: center;
+        font-weight: bold;
+      }
+      .client-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Section Dokumentasi */
+      .dokumentasi {
+        padding: 80px 50px;
+        background: #2862c0;
+        color: white;
+      }
+      .dokumentasi .container {
+        max-width: 1100px;
+        margin: auto;
+        text-align: center;
+      }
+      .dokumentasi h2 {
+        font-size: 30px;
+        color: white;
+        margin-bottom: 50px;
+      }
+      .coverflow-slider {
+        position: relative;
+        width: 100%;
+        height: 250px;
+        perspective: 1000px;
+        overflow: hidden;
+      }
+      .coverflow-card {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 200px;
+        height: 250px;
+        margin-left: -100px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 20px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.5s ease, z-index 0.5s ease, opacity 0.5s ease;
+      }
+      .coverflow-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 20px;
+      }
+
+      @media (max-width: 768px) {
+        .section-gradient {
+          flex-direction: column;
+          text-align: center;
+        }
+        .hero {
+          padding-left: 20px;
+          text-align: center;
+          justify-content: center;
+        }
+        .hero-content {
+          max-width: 90%;
+        }
+        .buttons {
+          flex-direction: column;
+          gap: 10px;
+        }
+        .section-gradient img {
+          width: 90%;
+        }
+        .clients-slider {
+          gap: 20px;
+        }
+        .client-card {
+          width: 120px;
+          padding: 10px;
+        }
+        .client-card img {
+          width: 60px;
+          height: 60px;
+        }
+        .coverflow-card {
+          width: 150px;
+          height: 180px;
+          margin-left: -75px;
+        }
+      }
+
+      .hero h1 {
+        font-size: 60px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: white;
+        text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+        word-wrap: break-word; /* biar otomatis pecah kalau kepanjangan */
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 36px; /* lebih kecil di tablet */
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-content h1 {
+          font-size: 36px; /* lebih kecil di HP */
+          text-align: center;
+        }
+        .hero-content p {
+          font-size: 16px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 28px; /* pas HP lebih kecil lagi */
+          line-height: 1.3; /* biar rapi */
+          text-align: center; /* pastikan rata tengah */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="container-nav">
+        <div class="logo">
+          <img src="logo.png" alt="Logo" />
+          <!-- ganti dengan logo kamu -->
+          <span>PT. JURAGAN LANGIT GROUP</span>
+        </div>
+
+        <nav class="nav-links" id="navLinks">
+          <a href="#beranda">Beranda</a>
+          <a href="#produk">Produk dan Layanan</a>
+          <a href="#client">Client</a>
+          <a href="dokumentasi.html">Dokumentasi</a>
+          <a href="legal.html">Legalitas</a>
+          <a href="kontak.html">Kontak</a>
+        </nav>
+
+        <!-- Hamburger -->
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>
+          PT. <br />
+          JURAGAN LANGIT GROUP
+        </h1>
+        <p>
+          Penyedia layanan internet yang andal, cepat, dan menjangkau hingga
+          daerah terpencil solusi konektivitas yang inklusif, inovatif, dan
+          berkelanjutan
+        </p>
+        <div class="buttons">
+          <a href="#" class="btn-info">Info Lanjut</a>
+          <a href="#" class="btn-hubungi">Hubungi</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2 -->
+    <section class="section-gradient" id="section2">
+      <img src="1.jpg" alt="Digital Globe" />
+      <div class="section-text">
+        <h1>
+          <center>
+            Solusi nyata untuk mengatasi<br />
+            kesenjangan digital
+          </center>
+        </h1>
+        <p>
+          <br />
+          Dengan fondasi teknologi internet (IP base) dan jaringan yang luas,
+          kami menyediakan akses internet yang terjangkau dan berkualitas,
+          memberdayakan masyarakat dan mendorong kemajuan di seluruh pelosok.
+        </p>
+      </div>
+    </section>
+
+    <!-- Section Visi & Misi -->
+    <section class="visi-misi">
+      <div class="container">
+        <h2>Visi & Misi</h2>
+        <div class="visi-misi-content">
+          <div class="visi-card">
+            <div class="icon">🎯</div>
+            <h3>Visi</h3>
+            <p>
+              Menjadi penyedia layanan internet terdepan yang inklusif,
+              inovatif, dan berkelanjutan, serta berkontribusi nyata dalam
+              meningkatkan kualitas hidup masyarakat melalui akses informasi dan
+              teknologi.
+            </p>
+          </div>
+          <div class="misi-card">
+            <div class="icon">✅</div>
+            <h3>Misi</h3>
+            <ul>
+              <li>
+                Membangun dan mengelola infrastruktur WiFi yang tangguh dan
+                adaptif, menggunakan kombinasi teknologi fiber optik dan
+                nirkabel untuk menjangkau daerah-daerah terpencil dengan kondisi
+                geografis yang beragam.
+              </li>
+              <li>
+                Menyediakan akses internet cepat, stabil, dan terjangkau bagi
+                masyarakat.
+              </li>
+              <li>
+                Memberikan layanan pelanggan yang responsif, ramah, dan
+                profesional untuk memastikan kepuasan pelanggan.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Produk & Layanan -->
+    <section class="produk-layanan" id="produk">
+      <div class="container">
+        <h2>Produk & Layanan</h2>
+        <div class="produk-grid">
+          <div class="produk-card">
+            <img src="s1.png" alt="Fiber Optic" />
+            <h3>Dedicated Access Internet Fiber Optic</h3>
+            <!-- <p>Internet Fiber Optic</p> -->
+          </div>
+          <div class="produk-card">
+            <img src="s2.png" alt="Hotspot" />
+            <h3>Internet Hotspot</h3>
+            <!-- <p>Koneksi praktis dengan jaringan hotspot</p> -->
+          </div>
+          <div class="produk-card">
+            <img src="s3.png" alt="Residential" />
+            <h3>Residential Internet Access</h3>
+            <!-- <p>Akses internet cepat untuk rumah</p> -->
+          </div>
+          <div class="produk-card">
+            <img src="s4.png" alt="Wireless" />
+            <h3>Dedicated Access Internet Wireless</h3>
+            <!-- <p>Internet Wireless</p> -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Clients -->
+    <section class="clients">
+      <div class="container">
+        <h2>Client Kami</h2>
+        <div class="clients-slider" id="clientsSlider">
+          <div class="client-card">
+            <img src="c1.png" alt="Client 1" />
+            <p>PT. kangen network solusindo</p>
+          </div>
+          <div class="client-card">
+            <img src="client2.png" alt="Client 2" />
+            <p>Client 2</p>
+          </div>
+          <div class="client-card">
+            <img src="client3.png" alt="Client 3" />
+            <p>Client 3</p>
+          </div>
+          <div class="client-card">
+            <img src="client4.png" alt="Client 4" />
+            <p>Client 4</p>
+          </div>
+          <div class="client-card">
+            <img src="client5.png" alt="Client 5" />
+            <p>Client 5</p>
+          </div>
+          <div class="client-card">
+            <img src="client6.png" alt="Client 6" />
+            <p>Client 6</p>
+          </div>
+          <div class="client-card">
+            <img src="client7.png" alt="Client 7" />
+            <p>Client 7</p>
+          </div>
+          <div class="client-card">
+            <img src="client8.png" alt="Client 8" />
+            <p>Client 8</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Dokumentasi -->
+    <section class="dokumentasi">
+      <div class="container">
+        <h2>Dokumentasi</h2>
+        <div class="coverflow-slider" id="coverflowSlider">
+          <div class="coverflow-card">
+            <img src="d1.jpg" alt="Dokumentasi 1" />
+          </div>
+          <div class="coverflow-card">
+            <img src="d2.jpg" alt="Dokumentasi 2" />
+          </div>
+          <div class="coverflow-card">
+            <img src="d3.jpg" alt="Dokumentasi 3" />
+          </div>
+          <div class="coverflow-card">
+            <img src="d4.jpg" alt="Dokumentasi 4" />
+          </div>
+          <div class="coverflow-card">
+            <img src="d5.jpg" alt="Dokumentasi 5" />
+          </div>
+          <div class="coverflow-card">
+            <img src="d6.jpg" alt="Dokumentasi 6" />
+          </div>
+          <div class="coverflow-card">
+            <img src="d7.jpg" alt="Dokumentasi 5" />
+          </div>
+          <div class="coverflow-card">
+            <img src="d8.jpg" alt="Dokumentasi 6" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("navLinks");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navLinks.classList.toggle("active");
+      });
+
+      // Clients auto-scroll
+      const sliderClients = document.getElementById("clientsSlider");
+      const items = Array.from(sliderClients.children);
+      for (let i = 0; i < 2; i++) {
+        items.forEach((item) =>
+          sliderClients.appendChild(item.cloneNode(true))
+        );
+      }
+
+      let scrollPos = 0;
+      const speed = 1;
+      function autoScrollClients() {
+        scrollPos += speed;
+        const maxScroll = sliderClients.scrollWidth / 3;
+        if (scrollPos >= maxScroll) scrollPos = 0;
+        sliderClients.scrollLeft = scrollPos;
+        requestAnimationFrame(autoScrollClients);
+      }
+      requestAnimationFrame(autoScrollClients);
+
+      // Coverflow slider
+      const coverflowSlider = document.getElementById("coverflowSlider");
+      const cards = Array.from(
+        coverflowSlider.querySelectorAll(".coverflow-card")
+      );
+      let currentIndex = 0;
+      function updateCoverflow() {
+        const gap = 120;
+        const scaleStep = 0.1;
+        cards.forEach((card, index) => {
+          card.style.transition =
+            "transform 0.5s ease,z-index 0.5s ease,opacity 0.5s ease";
+          const diff = index - currentIndex;
+          if (diff === 0) {
+            card.style.transform = `translateX(0) scale(1)`;
+            card.style.zIndex = 5;
+            card.style.opacity = 1;
+          } else {
+            const offset = diff * gap;
+            const scale = 1 - Math.abs(diff) * scaleStep;
+            card.style.transform = `translateX(${offset}px) scale(${scale})`;
+            card.style.zIndex = 5 - Math.abs(diff);
+            card.style.opacity = Math.abs(diff) > 3 ? 0 : 0.7;
+          }
+        });
+      }
+      updateCoverflow();
+      setInterval(() => {
+        currentIndex = (currentIndex + 1) % cards.length;
+        updateCoverflow();
+      }, 2000);
+
+      // Fade-in Section 2
+      const section2 = document.getElementById("section2");
+      window.addEventListener("scroll", () => {
+        const rect = section2.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          section2.classList.add("visible");
+        }
+      });
+
+      // Fade-in Produk & Layanan
+      const produkCards = document.querySelectorAll(".produk-card");
+      window.addEventListener("scroll", () => {
+        produkCards.forEach((card, i) => {
+          const rect = card.getBoundingClientRect();
+          if (rect.top < window.innerHeight - 100) {
+            setTimeout(() => {
+              card.classList.add("visible");
+            }, i * 200); // stagger effect
+          }
+        });
+      });
+    </script>
+  </body>
 </html>
