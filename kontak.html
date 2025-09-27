@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PT Juragan Langit Group</title>
+  <style>
+    /* Reset & Base Style */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    }
+
+    body {
+      background: #2862c0;
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    /* ================= NAVBAR ================= */
+    .navbar {
+      background: #0A1440;
+      padding: 15px 30px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .container-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    .logo img {
+      height: 55px; 
+      margin-right: 12px;
+    }
+
+    .logo span {
+      font-size: 16px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a:hover {
+      color: #28A0FF;
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 25px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    .hamburger span {
+      display: block;
+      height: 3px;
+      width: 100%;
+      background: white;
+      border-radius: 5px;
+      transition: all 0.4s ease;
+    }
+
+    /* Responsive navbar */
+    @media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 65px;
+    right: 0;
+    background: #0A1440;
+    flex-direction: column;
+    width: 180px; /* lebih kecil dari sebelumnya 220px */
+    display: none;
+    padding: 10px 15px; /* lebih ramping */
+    border-radius: 8px 0 0 8px;
+    box-shadow: -4px 4px 12px rgba(0,0,0,0.3);
+  }
+
+  .nav-links a {
+    padding: 8px 0; /* lebih kecil */
+    font-size: 13px; /* lebih kecil dari 15px */
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+}
+
+
+    /* Animasi Hamburger → X */
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(6px, -6px);
+    }
+
+    /* ================= MAP SECTION ================= */
+    .map-section {
+      margin-top: 90px; 
+      background-color: #2862c0;
+    }
+
+    .map-container {
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+    .map-section iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+    }
+
+    /* ================= CONTACT SECTION ================= */
+    .contact-section {
+      padding: 60px 20px;
+      background: #2862c0;
+    }
+
+    .contact-container {
+      max-width: 900px;
+      margin: auto;
+      background: #f9fbff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .contact-title {
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 25px;
+      color: #0A1440;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+
+    .contact-info p {
+      margin-bottom: 12px;
+      font-size: 15px;
+      line-height: 1.6;
+      color: #444;
+    }
+
+    .contact-info span {
+      font-weight: bold;
+      display: inline-block;
+      width: 100px;
+      color: #0A1440;
+    }
+
+    /* ================= FOOTER ================= */
+    footer {
+      background: #0A1440;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 13px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+  <!-- ================= NAVBAR ================= -->
+  <header class="navbar">
+    <div class="container-nav">
+      <div class="logo">
+        <img src="logo.png" alt="Logo"> 
+        <span>PT. JURAGAN LANGIT GROUP</span>
+      </div>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#beranda">Beranda</a>
+        <a href="#produk">Produk & Layanan</a>
+        <a href="#client">Client</a>
+        <a href="dokumentasi.html">Dokumentasi</a>
+        <a href="legal.html">Legalitas</a>
+        <a href="#kontak">Kontak</a>
+      </nav>
+
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= MAP SECTION ================= -->
+  <section class="map-section" id="map">
+    <div class="container">
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127653.41479314572!2d98.6032486!3d3.5970315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x303131c79a1b4d3b%3A0x3039d80b220d3a0!2sCitra%20Menteng!5e0!3m2!1sid!2sid!4v1696350000000"
+          allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT SECTION ================= -->
+  <section class="contact-section" id="kontak">
+    <div class="contact-container">
+      <div class="contact-title">INFO KONTAK<br>PT. JURAGAN LANGIT GROUP</div>
+      <div class="contact-info">
+        <p><span>TELP</span>: 0823-8841-1203</p>
+        <p><span>EMAIL</span>: ADMIN@JURAGANLANGITGRUP.NET</p>
+        <p><span>ALAMAT</span>: Jl. Gajah Mada KM.23, Desa/Kelurahan Tasikserai Barat,<br>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Kec. Talang Muandau, Kab. Bengkalis, Provinsi Riau</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FOOTER ================= -->
+  <footer>
+    © 2025 PT. Juragan Langit Group - All Rights Reserved
+  </footer>
+
+  <!-- Script Navbar -->
+  <script>
+    const hamburger = document.getElementById("hamburger");
+    const navLinks = document.getElementById("navLinks");
+
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("active");
+      navLinks.classList.toggle("active");
+    });
+  </script>
+</body>
+</html>
